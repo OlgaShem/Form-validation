@@ -264,9 +264,11 @@ li.footer__item:last-child {
 .email-block {
     position: relative;
 }
-
 .select-countries {
     margin-right: 10px;
+}
+#visa {
+    display: block;
 }
 
 @media only screen and (max-width: $landscape-xl) {  
@@ -290,7 +292,6 @@ li.footer__item:last-child {
         display: flex;
     }
 }
-
 @media only screen and (max-width: 990px) {  
    .customer {
         left: 54%;

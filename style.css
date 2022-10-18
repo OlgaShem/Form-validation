@@ -284,6 +284,10 @@ li.footer__item:last-child::after {
   margin-right: 10px;
 }
 
+#visa {
+  display: block;
+}
+
 @media only screen and (max-width: 1200px) {
   .secure-block {
     width: 100%;
