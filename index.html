@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>
+                Payment
+        </title>
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+        <script src="js/msdropdown/jquery-1.3.2.min.js" type="text/javascript"></script>
+        <script src="dist/js/dd.min.js?ver=4.0"></script>
+        <link rel="stylesheet" href="dist/css/dd.css?v=4.0">
+        <link rel="stylesheet" type="text/css" href="dist/css/flags.css?v=1.0" />
+    </head>
+        <body>
+            <div class="wrap">
+                <header>
+                    <div class="header d-lg-flex d-md-flex justify-content-between">
+                        <img src="img/logo.svg" alt="" class="logo">
+                        <div class="select-block d-flex align-items-center">
+                            <div class="select-countries">
+                                <select name="countries" id="countries" is="ms-dropdown" data-child-height="315">
+                                <option value="gb" data-image-css="flag gb" data-title="English">English</option>
+                                <option value="ua" data-image-css="flag ua" data-title="Ukraine">Ukraine</option>
+                                <option value="de" data-image-css="flag de" data-title="Germany">Germany</option>
+                                <option value="pl" data-image-css="flag pl" data-title="Poland">Poland</option>
+                            
+                                </select>
+                            </div>
+                        
+                            <div class="select-currency">
+                                <select name="currency" id="currency" is="ms-dropdown">
+                                    <option value="usd">USD</option>
+                                    <option value="uah" >UAH</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            <main>
+                <div class="main-content d-lg-flex">
+                    <section class="billing">
+                        <h1 class="billing__title">
+                            Billing information
+                        </h1>
+                        <form class="form" id="validate" action="">
+                            <div class="form-group d-lg-flex">
+                                <div class="name-block">
+                                    <label for="name" class="label-name">First name</label>
+                                    <input type="text" class="form-control name required" name="name">
+                                </div>
+                                <div class="surname-block">
+                                    <label for="surname" class="label-surname">Last name</label>
+                                    <input type="text" class="form-control required surname required" name="name">
+                                </div>
+                            </div>
+                            <div class="email-block">
+                                <label for="email" class="label-email">Email</label>
+                                <input type="text" class="form-control email required" name="email">
+                            </div>
+                            <select name="year" class="form-control form-field">
+                                <option value="1">Ukraine</option>
+                                <option value="1">Britain</option>
+                                <option value="2">Poland</option>
+                            </select> 
+                            <div class="phone">
+                                <input type="text" class="form-control required form-field" name="number" placeholder="Phone number">
+                                <a href=""><img src="img/question.svg" class="phone__icon"></a>
+                            </div>
+                            <div class="tab">
+                                <button class="tablinks" onclick="openPay(event, 'visa')" id="defaultOpen"><img src="img/visa.svg" alt="" ><img src="img/master.svg" alt=""></button>
+                                <button class="tablinks" onclick="openPay(event, 'paypal')"><img src="img/paypal.svg" alt=""></button>
+                            </div>
+                            <div id="visa" class="tabcontent">
+                                <div class="form-inner" >
+                                    <div class="card-block"> 
+                                        <label for="card" class="label-card">Card number</label>
+                                        <input type="text" class="form-control required form-field card" name="card">
+                                    </div>
+                                    <div class="form-group d-lg-flex">
+                                        <select name="month" class="form-control form-select">
+                                            <option value="1">01</option>
+                                            <option value="2">02</option>
+                                        </select> 
+                                        <select name="year" class="form-control form-select">
+                                            <option value="1">21</option>
+                                            <option value="2">22</option>
+                                        </select> 
+                                        <div class="secur-block">
+                                            <label for="secur" class="label-secur">Security code</label>
+                                            <input class="form-control secur required" type="password" name="code">
+                                        </div>
+                                    </div>
+                            </div>
+                                </div>
+                                <div id="paypal" class="tabcontent">
+                                    <div class="form-inner" >
+                                        <input type="text" class="form-control form-field" name="number" placeholder="Account number">
+                                        <input type="text" class="form-control form-field" name="name" placeholder="Name">  
+                                    </div>
+                                </div>
+                                <button class="submit" type="submit">
+                                    Submit order
+                                </button>  
+                        </form>
+                    </section>
+                    <section class="product">
+                        <div class="product__name underline d-flex justify-content-between">
+                            <p>Product</p>
+                            <p>Price</p>
+                        </div>
+                        <div class="product__description underline d-lg-flex justify-content-between">
+                            <div class="product__content d-flex">
+                                <img src="img/product.png" alt="" class="product__image">
+                                <div class="product__block">
+                                <h3 class="product__title">Test Product</h3>
+                                <p class="product__subtitle">Product description</p>
+                                <p class="product__subtitle product__subtitle_blue">Auto-renewal</p>
+                            </div>
+                            </div>
+                            <h3 class="product__title product__title_price">100.00  USD</h3>
+                        </div>
+                        <div class="product__title product__title_vat d-lg-flex justify-content-end underline"><img src="img/question.svg" alt="" class="product__ask"> <span>VAT (20.00%): 20.00 USD</span></div>
+                        <div class="product__total d-lg-flex justify-content-end">TOTAL: 120.00 USD</div>
+                    </section>
+                </div>  
+            </main>
+            <footer>
+                <section class="customer">
+                    <div class="customer-text">
+                        <p class="customer-text__item"> Do not hesitate to contact our CUSTOMER CARE CENTER for more information about payment and delivery.</p>
+                            <p class="customer-text__item">  Please state the order ID from the confirmation email as a reference so that we can assist you efficiently."
+                            </p>
+                            <p class="customer-text__item">24/7 English phone support for online payment related issues:</p>
+                            <div class="d-flex">
+                                <img src="img/24.svg" alt="">
+                                <div class="customer-text__phone">
+                                    <p><strong>+ 1-888-317-4868</strong> (Toll free)</p>
+                                    <p> <strong> + 1-647-977-7769</strong> (International)</p>
+                                </div>
+                            </div>
+                            <p class="customer-text__item">By submitting your Order, you acknowledge that you are purchasing from PayPro Global 
+                                (PayPro Global, Inc., PayPro Europe Limited or PayPro U.S. Inc.), an authorized e-Commerce reseller.
+                            </p>
+                            <p class="customer-text__item">Once the transaction is complete, your contact information will be shared with the product vendor for ongoing support purposes.</p>
+                    </div>
+                    <div class="secure-block d-flex justify-content-between">
+                        <img src="img/pci.svg" alt="" class="secure-block__icon">
+                        <img src="img/trusted.svg" alt="" class="secure-block__icon">
+                        <img src="img/norton.svg" alt="" class="secure-block__icon">
+                    </div>
+                </section>
+                <div class="footer d-lg-flex d-md-flex justify-content-between">
+                    <nav>
+                        <ul class="footer__menu d-lg-flex d-md-flex">
+                            <li class="footer__item">
+                                <a href="" class="footer__link">Privacy Policy </a>
+                            </li>
+                            <li class="footer__item">
+                                <a href=""  class="footer__link">Terms and Conditions</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href=""  class="footer__link">Refund Policy</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <p>© PayPro Global, Inc. 2021</p>
+                </div>
+            </footer>
+        </div>
+    <script src="script.js"></script>
+ </body>
+</html>
