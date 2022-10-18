@@ -1,4 +1,4 @@
-//Payment tabs 
+//Payments tab 
 function openPay(evt, payName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -11,9 +11,8 @@ function openPay(evt, payName) {
     }
     document.getElementById(payName).style.display = "block";
     evt.currentTarget.className += " active";
+    
 }
-
-document.getElementById("defaultOpen").click();
 
 //Form validation
 $("#validate").validate({
@@ -38,7 +37,8 @@ $("#validate").validate({
       digits: true,
       minlength: 16
     }
-  },
+
+      },
     messages: {
       email: {
         required: "Write your email",
@@ -51,7 +51,7 @@ $("#validate").validate({
     },
   });
 
- //Hide input label
+
 $('input.name').focus(function(){
     $('label.label-name').hide();
 });
