@@ -18,30 +18,29 @@
         <link rel="stylesheet" type="text/css" href="dist/css/flags.css?v=1.0" />
     </head>
         <body>
-            <div class="wrap">
-            <header>
-                <div class="header d-lg-flex d-md-flex justify-content-between">
-                <img src="img/logo.svg" alt="" class="logo">
-                <div class="select-block d-flex align-items-center">
-                    <div class="select-countries">
-                        <select name="countries" id="countries" is="ms-dropdown" data-child-height="315">
-                          <option value="gb" data-image-css="flag gb" data-title="English">English</option>
-                          <option value="ua" data-image-css="flag ua" data-title="Ukraine">Ukraine</option>
-                          <option value="de" data-image-css="flag de" data-title="Germany">Germany</option>
-                          <option value="pl" data-image-css="flag pl" data-title="Poland">Poland</option>
-                        </select>
+            <header class="header">
+                <div class="d-flex justify-content-between wrap">
+                    <img src="img/logo.svg" alt="" class="logo">
+                    <div class="select-block d-flex align-items-center">
+                        <div class="select-countries">
+                            <select name="countries" id="countries" is="ms-dropdown" data-child-height="315">
+                            <option value="gb" data-image-css="flag gb" data-title="English">English</option>
+                            <option value="ua" data-image-css="flag ua" data-title="Ukraine">Ukraine</option>
+                            <option value="de" data-image-css="flag de" data-title="Germany">Germany</option>
+                            <option value="pl" data-image-css="flag pl" data-title="Poland">Poland</option>
+                            </select>
+                        </div>
+                    
+                        <div class="select-currency">
+                            <select name="currency" id="currency" is="ms-dropdown">
+                                <option value="usd">USD</option>
+                                <option value="uah" >UAH</option>
+                            </select>
+                        </div>
                     </div>
-                   
-                    <div class="select-currency">
-                        <select name="currency" id="currency" is="ms-dropdown">
-                            <option value="usd">USD</option>
-                            <option value="uah" >UAH</option>
-                        </select>
-                    </div>
-                       
-                </div>
                 </div>
             </header>
+            <div class="wrap">
             <main>
                 <div class="main-content d-lg-flex">
                     <section class="billing">
@@ -51,17 +50,18 @@
                         <form class="form" id="validate" action="">
                             <div class="form-group d-lg-flex">
                                 <div class="name-block">
-                                    <label for="name" class="label-name">First name</label>
+                                    <label for="name" class="label-name required">First name</label>
                                     <input type="text" class="form-control name required" name="name">
                                 </div>
                                 <div class="surname-block">
-                                    <label for="surname" class="label-surname">Last name</label>
-                                    <input type="text" class="form-control required surname required" name="name">
+                                    <label for="surname" class="label-surname required">Last name</label>
+                                    <input type="text" class="form-control required surname required" name="surname">
                                 </div>
                             </div>
                             <div class="email-block">
-                                <label for="email" class="label-email">Email</label>
-                                <input type="text" class="form-control email required" name="email">
+                                <label for="email" class="label-email required">Email</label>
+                                <input type="email" id="email" class="form-control email required" name="email" onchange="checkEmail()">
+                                <span class="error-email"></span>
                             </div>
                             <select name="year" class="form-control form-field">
                                 <option value="1">Ukraine</option>
@@ -69,7 +69,8 @@
                                 <option value="2">Poland</option>
                             </select> 
                             <div class="phone">
-                                <input type="text" class="form-control required form-field" name="number" placeholder="Phone number">
+                                <label for="phone" class="label-phone">Phone number</label>
+                                <input type="text" class="form-control required form-field phone" name="number">
                                 <a href=""><img src="img/question.svg" class="phone__icon"></a>
                             </div>
                             <div class="tab">
@@ -79,7 +80,7 @@
                             <div id="visa" class="tabcontent">
                                 <div class="form-inner" >
                                     <div class="card-block"> 
-                                        <label for="card" class="label-card">Card number</label>
+                                        <label for="card" class="label-card required">Card number</label>
                                         <input type="text" class="form-control required form-field card" name="card">
                                     </div>
                                     <div class="form-group d-lg-flex">
@@ -92,7 +93,7 @@
                                             <option value="2">22</option>
                                         </select> 
                                         <div class="secur-block">
-                                            <label for="secur" class="label-secur">Security code</label>
+                                            <label for="secur" class="label-secur required">Security code</label>
                                             <input class="form-control secur required" type="password" name="code">
                                         </div>
                                     </div>
@@ -100,8 +101,14 @@
                                 </div>
                                 <div id="paypal" class="tabcontent">
                                     <div class="form-inner" >
-                                        <input type="text" class="form-control form-field" name="number" placeholder="Account number">
-                                        <input type="text" class="form-control form-field" name="name" placeholder="Name">  
+                                        <div class="account-block">
+                                            <label for="account" class="label-account">Account number</label>
+                                            <input type="text" class="form-control account form-field" name="number" >
+                                        </div>
+                                        <div class="account-name-block">
+                                            <label for="account-name" class="label-account-name">Name</label>
+                                            <input type="text" class="form-control account-name form-field" name="name" >  
+                                        </div>
                                     </div>
                                 </div>
 
@@ -157,21 +164,21 @@
         
                         </div>
                 </section>
-                <div class="footer d-lg-flex d-md-flex justify-content-between">
+                <div class="footer-block d-lg-flex d-md-flex justify-content-between">
                     <nav>
-                        <ul class="footer__menu d-lg-flex d-md-flex">
-                            <li class="footer__item">
-                                <a href="" class="footer__link">Privacy Policy </a>
+                        <ul class="footer-block__menu">
+                            <li class="footer-block__item">
+                                <a href="" class="footer-block__link">Privacy Policy </a>
                             </li>
-                            <li class="footer__item">
-                                <a href=""  class="footer__link">Terms and Conditions</a>
+                            <li class="footer-block__item">
+                                <a href=""  class="footer-block__link">Terms and Conditions</a>
                             </li>
-                            <li class="footer__item">
-                                <a href=""  class="footer__link">Refund Policy</a>
+                            <li class="footer-block__item">
+                                <a href=""  class="footer-block__link">Refund Policy</a>
                             </li>
                         </ul>
                     </nav>
-                    <p>© PayPro Global, Inc. 2021</p>
+                    <p class="footer-block__last">© PayPro Global, Inc. 2021</p>
                 </div>
             </footer>
         </div>
